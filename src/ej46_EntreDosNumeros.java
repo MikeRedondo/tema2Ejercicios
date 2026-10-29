@@ -12,18 +12,54 @@ void main() {
         IO.println((num1 == num2) ? "ERROR: Los números deben ser distintos.\n" : "");
     } while (num1 == num2);
 
-    // Según que número es el mayor, iniciamos un bucle u otro, y mostramos el resultado.
-    if (num1 < num2) {
-        IO.println("Entre los números %d y %d hay los siguientes números:".formatted(num1, num2));
-        for (int i = (num1 + 1); i < num2 ; i++) {
-            IO.print(i + ((i == (num2 - 1) ? "" : " -> ")));
-        }
+    for (int i = 0; i < 100; i++) {
+        IO.println("");
     }
 
-    if (num1 > num2) {
-        IO.println("Entre los números %d y %d hay los siguientes números:".formatted(num1, num2));
-        for (int i = (num1 - 1); i > num2 ; i--) {
-            IO.print(i + ((i == (num2 + 1) ? "" : " -> ")));
+    IO.print("Cargando la cuenta ");
+    for (int i = 0; i < 3; i++) {
+        try {
+            Thread.sleep(600);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
+        IO.print(". ");
     }
+
+    // Según que número es el mayor, iniciamos un bucle u otro, y mostramos el resultado.
+//    if (num1 < num2) {
+//        IO.println("\nEntre los números %d y %d hay los siguientes números:".formatted(num1, num2));
+//        for (int i = (num1 + 1); i < num2 ; i++) {
+//            try {
+//                Thread.sleep(500);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//            IO.print(i + ((i == (num2 - 1) ? "" : " -> ")));
+//        }
+//    }
+//
+//    if (num1 > num2) {
+//        IO.println("\nEntre los números %d y %d hay los siguientes números:".formatted(num1, num2));
+//        for (int i = (num1 - 1); i > num2 ; i--) {
+//            IO.print(i + ((i == (num2 + 1) ? "" : " -> ")));
+//        }
+//    }
+
+    // Solución de clase en un solo bucle.
+    int valorInicial = (num1 < num2) ? num1 + 1 : num1 - 1;
+
+    IO.println("\nEntre los números %d y %d hay los siguientes números:".formatted(num1, num2));
+
+    for (int i = valorInicial; i != num2;) {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        IO.print(i + ((i == (num2 - 1) || i == (num2 + 1) ? "" : " -> ")));
+        i += (num1 < num2) ? 1 : -1;
+    }
+
+    IO.readln("\n\nPulsa enter para finalizar el programa.");
 }
