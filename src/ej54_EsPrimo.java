@@ -14,7 +14,7 @@ void main() {
     for (int divisor = 2; divisor <= Math.sqrt(num); divisor++) {
         if (num % divisor == 0) {
             primo = false;
-            break;
+            divisor = num; // Forzamos la salida del bucle for.
         }
     }
 

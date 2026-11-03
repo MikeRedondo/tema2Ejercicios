@@ -3,7 +3,8 @@ void main() {
 
     // Declaramos las variables.
     final int COMBINACION = 2026;
-    int num, intentos = 4;
+    int numeroInt, intentos = 4;
+    String numeroString;
 
     // Pedimos los datos.
     do {
@@ -12,15 +13,22 @@ void main() {
             [ 0 0 0 0 ]
             Intentos: %d
             """.formatted(intentos));
-        num = Integer.parseInt(IO.readln("Introduce un número de 4 cifras para intentar abrir la caja fuerte: "));
-        if (num != COMBINACION) {
+
+        do {
+            numeroString = (IO.readln("Introduce un número de 4 cifras para intentar abrir la caja fuerte: "));
+            if (numeroString.length() != 4) IO.println("ERROR: Le número debe tener 4 cifras.");
+        } while (numeroString.length() != 4);
+
+        numeroInt = Integer.parseInt(numeroString);
+
+        if (numeroInt != COMBINACION) {
             intentos--;
             if (intentos > 0) IO.readln("Combinación errónea. Pulsa enter para intentarlo otra vez.");
             for (int i = 0; i < 50; i++) IO.println("");
         }
-    } while (num != COMBINACION && intentos > 0);
+    } while (numeroInt != COMBINACION && intentos > 0);
 
-    if (num == COMBINACION) IO.println("La caja fuerte se ha abierto satisfactoriamente.");
+    if (numeroInt == COMBINACION) IO.println("La caja fuerte se ha abierto satisfactoriamente.");
     if (intentos <= 0) {
         IO.println("""
             CAJA FUERTE
