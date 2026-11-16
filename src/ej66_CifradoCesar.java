@@ -36,6 +36,9 @@ void main() {
                 esCifrar = false;
                 break;
 
+            case 3: // Salir
+                break;
+
             default: // Opción inválida.
                 IO.println("ERROR: Opción inválida.\n");
         }
